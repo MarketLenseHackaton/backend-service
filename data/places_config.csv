@@ -1,0 +1,10 @@
+id,name,state,area_type,segment,channel,lgas,registered,capacity_override,demand_interviews,awareness_gap,crc_registry_index
+KAN-FAM-OPM,Kano,Kano,city,Families,open_market,,3,,,medium,
+KAD-FAM-OPM,Kaduna,Kaduna,city,Families,open_market,,2,,,medium,
+ABJ-PRO-SUP,Abuja,Federal Capital Territory,big_city,Working professionals,supermarket,,5,6,,low,
+ABJ-STU-CAN,Abuja,Federal Capital Territory,big_city,Students,canteen,,4,4,,medium,
+LAG-FAM-SUP,Lagos,Lagos,big_city,Families,supermarket,,8,8,,low,
+IBD-FAM-SUP,Ibadan,Oyo,city,Families,supermarket,,2,,,medium,
+PHC-YP-RES,Port Harcourt,Rivers,big_city,Young professionals,restaurant,,1,,,medium,
+BAU-HH-VSH,Rural Bauchi,Bauchi,rural,Farming households,village_shop,ALKALERI;DARAZO;GANJUWA;NINGI;TORO,0,,,high,
+SOK-HH-WMK,Rural Sokoto,Sokoto,rural,Households,open_market,GADA;SABON BIRNI;BODINGA;TAMBUWAL;ILLELA,0,,,high,

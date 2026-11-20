@@ -1,0 +1,39 @@
+{
+  "default": {
+    "activities": [],
+    "recipes": [
+      {
+        "dish": "Stew and efo riro",
+        "steps": "Soak the chunks in hot water for 10 min, squeeze out the water, fry in your pepper base, then simmer in the stew for 15 min."
+      },
+      {
+        "dish": "Jollof rice",
+        "steps": "Soak and squeeze the chunks, fry them with onions in the tomato base, then add rice and stock and cook as usual."
+      },
+      {
+        "dish": "Suya-style skewers",
+        "steps": "Soak and squeeze the chunks, coat in groundnut oil and suya spice (yaji), thread on skewers and grill or pan-fry for 8–10 min."
+      }
+    ]
+  },
+  "places": {
+    "BAU-HH-VSH": {
+      "activities": [
+        {
+          "title": "Ask the village head first",
+          "description": "Meet the village head or ward leader before any tasting so the community knows who you are.",
+          "effort": "low"
+        }
+      ]
+    },
+    "SOK-HH-WMK": {
+      "activities": [
+        {
+          "title": "Weekly market day stall",
+          "description": "Book one stall on the weekly market day and cook tuwo with soy-chunk miyan taushe for free tastes.",
+          "effort": "medium"
+        }
+      ]
+    }
+  }
+}

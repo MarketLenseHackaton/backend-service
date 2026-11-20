@@ -1,0 +1,10 @@
+id,name,state,area_type,segment,channel,population,demand,protein_deficiency,crc_index,meat_cost,capacity,registered,awareness_gap,market_type,label_demand,label_health,label_meat_cost,source_ids
+KAN-FAM-OPM,Kano,Kano,city,Families,open_market,13704940,56,80,49,46,11,3,medium,"High need, price-squeezed",estimated,estimated,estimated,S01;S02;S03;S06;S07
+KAD-FAM-OPM,Kaduna,Kaduna,city,Families,open_market,8623416,80,31,38,24,7,2,medium,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+ABJ-PRO-SUP,Abuja,Federal Capital Territory,big_city,Working professionals,supermarket,3838085,46,17,84,13,6,5,low,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+ABJ-STU-CAN,Abuja,Federal Capital Territory,big_city,Students,canteen,3838085,46,17,84,13,4,4,medium,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+LAG-FAM-SUP,Lagos,Lagos,big_city,Families,supermarket,9499795,37,2,65,0,8,8,low,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+IBD-FAM-SUP,Ibadan,Oyo,city,Families,supermarket,6913969,53,19,76,20,5,2,medium,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+PHC-YP-RES,Port Harcourt,Rivers,big_city,Young professionals,restaurant,5316023,43,6,78,13,3,1,medium,"Processed-meat heavy, lower protein need",estimated,estimated,estimated,S01;S02;S03;S06;S07
+BAU-HH-VSH,Rural Bauchi,Bauchi,rural,Farming households,village_shop,2073585,40,81,0,89,1,0,high,"High need, price-squeezed",assumed,estimated,estimated,S01;S02;S03;S06;S07
+SOK-HH-WMK,Rural Sokoto,Sokoto,rural,Households,open_market,1534642,40,69,8,73,1,0,high,"High need, price-squeezed",assumed,estimated,estimated,S01;S02;S03;S06;S07
