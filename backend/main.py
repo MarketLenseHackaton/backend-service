@@ -1,5 +1,9 @@
 import os
 from contextlib import asynccontextmanager
+from functools import lru_cache
+from pathlib import Path
+
+import pandas as pd
 
 import marketlens_ai as ai
 from fastapi import FastAPI, Request
@@ -69,11 +73,43 @@ FEEDBACK_VALUES = {
 }
 DATA_AS_OF = "2026-05"   # NBS Selected Food Price Watch, May 2026 (source S01)
 
-PRODUCTS = [
-    {"id": "soy_chunk", "name": "Soy–cowpea protein chunk", "uses": ["stews", "jollof", "suya-style"]},
-    {"id": "awara", "name": "Awara (soy cheese)", "uses": ["stews", "snacks", "suya-style"]},
-    {"id": "soy_mince", "name": "Soy mince", "uses": ["jollof", "sauces", "stews"]},
-]
+PRODUCTS_CSV = Path(__file__).resolve().parent.parent / "data" / "products.csv"
+
+
+@lru_cache
+def load_products() -> tuple[dict, ...]:
+    """data/products.csv: id, name, uses (; separated), trends_term.
+    trends_term is the Google Trends search used for that product's demand."""
+    df = pd.read_csv(PRODUCTS_CSV, dtype=str).fillna("")
+    return tuple(
+        {
+            "id": r["id"].strip(),
+            "name": r["name"].strip(),
+            "uses": [u.strip() for u in r["uses"].split(";") if u.strip()],
+            "slug": "_".join(r["trends_term"].strip().lower().split()),
+        }
+        for r in df.to_dict("records")
+    )
+
+
+def find_product(product_id: str) -> dict:
+    product = next((p for p in load_products() if p["id"] == product_id), None)
+    if product is None:
+        ids = ", ".join(p["id"] for p in load_products())
+        raise bad_value(f"product_id must be one of {ids}, got '{product_id}'")
+    return product
+
+
+def with_product_demand(place: dict, product: dict) -> dict:
+    """Use this product's own demand (its Google Trends term) when places.csv has it."""
+    value = place.get(f"demand_{product['slug']}")
+    if value is None:
+        return place
+    return {
+        **place,
+        "demand": float(value),
+        "label_demand": place.get(f"label_demand_{product['slug']}") or place.get("label_demand"),
+    }
 
 
 # ---------- Error handlers: every error is {"error": {"code", "message"}} ----------
@@ -159,7 +195,7 @@ def health():
 
 @app.get("/api/products", response_model=list[Product])
 def products():
-    return PRODUCTS
+    return [{"id": p["id"], "name": p["name"], "uses": p["uses"]} for p in load_products()]
 
 
 # ---------- 3. Rank ----------
@@ -171,8 +207,10 @@ def rank(req: RankRequest):
         if value not in VALID_WEIGHTS:
             raise bad_weights(f"Weight '{name}' must be 1, 2 or 3, got {value}")
     check_lens(req.lens)
+    product = find_product(req.product_id)
 
-    places = store.current_places()
+    # Each product has its own demand: awara searches differ from soya bean searches.
+    places = [with_product_demand(p, product) for p in store.current_places()]
     result = ai.rank(places, weights, req.lens, fair_share=req.fair_share)
     if not result["meta"].get("data_as_of"):
         result["meta"]["data_as_of"] = DATA_AS_OF

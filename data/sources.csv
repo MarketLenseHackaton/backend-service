@@ -1,7 +1,7 @@
 id,title,publisher,url,year,level,used_for
 S01,"Selected Food Price Watch (May 2026), zone averages",National Bureau of Statistics,https://microdata.nigerianstat.gov.ng/index.php/catalog/162,2026,zone,"meat_cost (beef, chicken, goat prices)"
 S02,"Nigeria Subnational Population, Health and Poverty tables",U.S. Census Bureau via HDX,https://data.humdata.org/dataset/1caa305c-2d52-4361-a1bc-ce9b850859c6,2019,state / LGA,population; under-5 mortality (MICS 2016-17); wealth quintiles (MICS 2016-17)
-S03,"Google Trends, interest by subregion",Google,https://trends.google.com,2026,state,demand
+S03,"Google Trends, interest by region (soya beans, awara), past 5 years",Google,https://trends.google.com,2026,state,"demand, per product"
 S04,Nigeria Demographic and Health Survey 2024,"NPC, FMoHSW and ICF",https://www.dhsprogram.com/pubs/pdf/FR395/FR395.pdf,2025,state,protein_deficiency (stunting)
 S05,IARC Monographs Q&A on red and processed meat,WHO / IARC,https://www.iarc.who.int/wp-content/uploads/2018/11/Monographs-QA_Vol114.pdf,2015,global,context: processed meat Group 1
 S06,Points of Interest of Nigeria (OpenStreetMap export),HOT / OpenStreetMap contributors,https://data.humdata.org/dataset/hotosm_nga_points_of_interest,2026,state / LGA,crc_index (processed-meat outlet density proxy)
