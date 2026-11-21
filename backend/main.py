@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 
 import marketlens_ai as ai
@@ -45,9 +46,15 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="MarketLens API", lifespan=lifespan)
 
+# Which websites may call this API. Local dev ports are always allowed.
+# On Render, set CORS_ORIGINS to the live frontend URL(s), comma-separated,
+# e.g. https://marketlens.vercel.app
+LOCAL_ORIGINS = ["http://localhost:5173", "http://localhost:4173", "http://127.0.0.1:5173"]
+EXTRA_ORIGINS = [o.strip().rstrip("/") for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=LOCAL_ORIGINS + EXTRA_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
